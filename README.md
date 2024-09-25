@@ -10,11 +10,9 @@ pip install pillow
 Create a data.json file with the following content:
 
 > {
-
-    "username": "your_username",
-    "password": "your_password"
-
-}
+>     "username": "your_username",
+>    "password": "your_password"
+> }
 
 ## How to use
 
