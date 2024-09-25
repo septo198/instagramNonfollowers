@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non-followers</title>
+    <script>
+        function fetchNonfollowers() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            fetch('/get_nonfollowers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: username, password: password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('nonfollowers-list');
+                list.innerHTML = '';
+                data.nonfollowers.forEach(user => {
+                    const li = document.createElement('li');
+                    li.textContent = user;
+                    list.appendChild(li);
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Non-followers</h1>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="fetchNonfollowers()">Get Non-followers</button>
+    <ul id="nonfollowers-list"></ul>
+</body>
+</html>
