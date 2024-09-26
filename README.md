@@ -2,25 +2,19 @@
 
 ## Requirements
 
-Inside your venv, install the requirements (
-pip install instagrapi
-pip install pillow
-) or just use the requirements.txt file
-
-Create a data.json file with the following content:
-
-> {
->     "username": "your_username",
->    "password": "your_password"
-> }
+Inside your venv, install the requirements specified in the requirements.txt file
 
 ## How to use
 
-Just launch main.py!
+Launch app.py
 
-> python main.py
+> python app.py
+
+Open http://127.0.0.1:5000/ on your local browser, insert your username and password and wait a couple minutes for the API to fetch your datas.
+By clicking on one of the cards that are gonna be generated, you will be redirected to the instragram profile you chose.
 
 ##
 
 Thanks to subzeroid for the instagrapi https://github.com/subzeroid/instagrapi/tree/master/instagrapi
-This is just a basic back-edn script that retrieves who is not following you back on instagram
+
+Enjoy!
