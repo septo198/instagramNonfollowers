@@ -1,10 +1,22 @@
 from instagrapi import Client
 
-client = Client()
+client = None
 
 def login(username, password):
+    global client
+    if client is not None:
+        logout()
+    client = Client()
     client.login(username, password)
+    print(client.account_info())
     return "Login successful"
+
+def logout():
+    global client
+    if client is not None:
+        client.logout()
+        client = None
+    return "Logout successful"
 
 def get_followers():
     followers = client.user_followers(client.user_id)
