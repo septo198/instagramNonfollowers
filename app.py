@@ -2,8 +2,10 @@ from flask import Flask, render_template, request, jsonify, send_file, make_resp
 from main import login, get_followers, get_followings, determine_nonfollowers
 import requests
 from io import BytesIO
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
