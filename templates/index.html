@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Non-followers</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <script>
         let followers = null;
         let followings = null;
@@ -15,7 +16,8 @@
             fetch('/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Cache-Control': 'no-store'
                 },
                 body: JSON.stringify({ username: username, password: password })
             })
@@ -30,7 +32,8 @@
             fetch('/get_followers', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Cache-Control': 'no-store'
                 }
             })
             .then(response => response.json())
@@ -45,7 +48,8 @@
             fetch('/get_followings', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Cache-Control': 'no-store'
                 }
             })
             .then(response => response.json())
@@ -60,7 +64,8 @@
             fetch('/determine_nonfollowers', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Cache-Control': 'no-store'
                 },
                 body: JSON.stringify({ followers: followers, followings: followings })
             })
