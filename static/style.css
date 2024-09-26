@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+#status {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+    color: #555;
+}
+
+input[type="text"], input[type="password"] {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#nonfollowers-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+}
+
+#nonfollowers-list li {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    width: calc(20% - 20px); /* 5 items per row */
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#nonfollowers-list img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+@media (max-width: 1200px) {
+    #nonfollowers-list li {
+        width: calc(25% - 20px); /* 4 items per row */
+    }
+}
+
+@media (max-width: 992px) {
+    #nonfollowers-list li {
+        width: calc(33.33% - 20px); /* 3 items per row */
+    }
+}
+
+@media (max-width: 768px) {
+    #nonfollowers-list li {
+        width: calc(50% - 20px); /* 2 items per row */
+    }
+}
+
+@media (max-width: 576px) {
+    #nonfollowers-list li {
+        width: calc(100% - 20px); /* 1 item per row */
+    }
+}

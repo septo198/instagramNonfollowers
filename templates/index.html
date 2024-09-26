@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Non-followers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script>
-        function fetchNonfollowers() {
+        let followers = null;
+        let followings = null;
+
+        function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            fetch('/get_nonfollowers', {
+            fetch('/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -17,13 +21,60 @@
             })
             .then(response => response.json())
             .then(data => {
+                document.getElementById('status').innerText = data.message;
+                getFollowers();
+            });
+        }
+
+        function getFollowers() {
+            fetch('/get_followers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                followers = data.followers;
+                document.getElementById('status').innerText = 'Fetched followers';
+                getFollowings();
+            });
+        }
+
+        function getFollowings() {
+            fetch('/get_followings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                followings = data.followings;
+                document.getElementById('status').innerText = 'Fetched followings';
+                determineNonfollowers();
+            });
+        }
+
+        function determineNonfollowers() {
+            fetch('/determine_nonfollowers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ followers: followers, followings: followings })
+            })
+            .then(response => response.json())
+            .then(data => {
                 const list = document.getElementById('nonfollowers-list');
                 list.innerHTML = '';
                 data.nonfollowers.forEach(user => {
                     const li = document.createElement('li');
-                    li.textContent = user;
+                    li.innerHTML = `<img src="/proxy_image?url=${encodeURIComponent(user.profile_pic_url)}" alt="${user.username}'s profile picture"> <span>${user.username}</span>`;
+                    li.onclick = () => window.open(`https://www.instagram.com/${user.username}/`, '_blank');
                     list.appendChild(li);
                 });
+                document.getElementById('status').innerText = 'Determined non-followers';
             });
         }
     </script>
@@ -32,7 +83,8 @@
     <h1>Non-followers</h1>
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
-    <button onclick="fetchNonfollowers()">Get Non-followers</button>
+    <button onclick="login()">Get Non-followers</button>
+    <div id="status"></div>
     <ul id="nonfollowers-list"></ul>
 </body>
 </html>
