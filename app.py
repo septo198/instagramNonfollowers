@@ -17,7 +17,7 @@ def login_route():
     username = data['username']
     password = data['password']
     message = login(username, password)
-    response = make_response(jsonify(message=message))
+    response = make_response(jsonify(message))
     response.headers['Cache-Control'] = 'no-store'
     return response
 
