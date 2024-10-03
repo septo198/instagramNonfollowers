@@ -1,4 +1,5 @@
 from instagrapi import Client
+from instagrapi.exceptions import BadPassword
 
 client = None
 
@@ -7,9 +8,14 @@ def login(username, password):
     if client is not None:
         logout()
     client = Client()
-    client.login(username, password)
-    print(client.account_info())
-    return "Login successful"
+    try:
+        client.login(username, password)
+        print(client.account_info())
+        return {"status": "success", "message": "Login successful"}
+    except BadPassword:
+        return {"status": "error", "message": "Incorrect password"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
 
 def logout():
     global client
