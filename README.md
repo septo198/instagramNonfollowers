@@ -13,7 +13,7 @@ Launch app.py
 Open http://127.0.0.1:5000/ on your local browser, insert your username and password and wait a couple minutes for the API to fetch your datas.
 By clicking on one of the cards that are gonna be generated, you will be redirected to the instragram profile you chose.
 
-##
+## About the webapp
 
 The webapp is also deployed at the url https://instagramnonfollowers.onrender.com
 Thanks to subzeroid for the instagrapi https://github.com/subzeroid/instagrapi/tree/master/instagrapi
